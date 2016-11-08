@@ -8,9 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.infinite.fake_mz.MzApp;
 import com.infinite.fake_mz.R;
+import com.infinite.fake_mz.entity.BaseValue;
+import com.infinite.fake_mz.entity.ValueInfo;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,6 +92,14 @@ public class ValuableInfoFragment extends Fragment{
             public void onResponse(Call<String> call, Response<String> response) {
                 String res=response.body();
                 Log.e("res",res);
+                Gson gson=new Gson();
+                Type type = new TypeToken<BaseValue<List<ValueInfo>>>() {
+                }.getType();
+                BaseValue<List<ValueInfo>> base=gson.fromJson(res, type);
+                if (!base.error){
+                    List<ValueInfo> valueInfos=base.getResults();
+                }
+
             }
 
             @Override
