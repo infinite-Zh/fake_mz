@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.infinite.fake_mz.fragment.ValuableInfoFragment;
+
 import java.util.List;
 
 /**
@@ -27,4 +29,8 @@ public class PagerFragmentAdaoter extends FragmentStatePagerAdapter{
         return mFrags.size();
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return ((ValuableInfoFragment)mFrags.get(position)).getTitle();
+    }
 }
