@@ -18,11 +18,13 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class MzApp extends Application {
 
     public static GankIOService mGankIOService;
-
+    public static MzApp mzApp;
     @Override
     public void onCreate() {
         super.onCreate();
+        mzApp=this;
         initGankIOService();
+
     }
 
     private void initGankIOService() {
@@ -39,5 +41,9 @@ public class MzApp extends Application {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         mGankIOService = retrofit.create(GankIOService.class);
+    }
+
+    public static MzApp getApp(){
+        return mzApp;
     }
 }

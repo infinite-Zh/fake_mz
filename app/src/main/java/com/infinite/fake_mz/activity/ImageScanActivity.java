@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.infinite.fake_mz.R;
@@ -36,7 +39,23 @@ public class ImageScanActivity extends AppCompatActivity{
         setContentView(R.layout.activity_image_scan);
         setSupportActionBar(mToolBar);
         ButterKnife.bind(this);
+        mToolBar.inflateMenu(R.menu.menu_image_scan);
+        mToolBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.menu_save:
+                        Toast.makeText(ImageScanActivity.this,"gaga",Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.menu_share:
+
+                        break;
+                }
+                return false;
+            }
+        });
         processIntent();
+
 
     }
 
@@ -64,7 +83,9 @@ public class ImageScanActivity extends AppCompatActivity{
         if (TextUtils.isEmpty(url)){
             finish();
         }else {
-            Glide.with(this).load(url).centerCrop().crossFade().into(mImg);
+            Glide.with(this).load(url).thumbnail(0.1f).crossFade().into(mImg);
         }
     }
+
+
 }

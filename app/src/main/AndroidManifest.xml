@@ -3,6 +3,7 @@
           package="com.infinite.fake_mz">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:name=".MzApp"
         android:allowBackup="true"

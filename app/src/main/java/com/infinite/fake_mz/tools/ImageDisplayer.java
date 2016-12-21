@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.infinite.fake_mz.R;
 
 /**
@@ -17,7 +18,7 @@ public class ImageDisplayer {
         Glide.with(activity).load(url).centerCrop().crossFade().placeholder(R.mipmap.ic_launcher).into(imageView);
     }
     public static void displayImage(ImageView imageView,String url, Context context){
-        Glide.with(context).load(url).centerCrop().crossFade().placeholder(R.mipmap.ic_launcher).into(imageView);
+        Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.RESULT).centerCrop().crossFade().placeholder(R.mipmap.ic_launcher).into(imageView);
 
     }
 }
